@@ -2,10 +2,10 @@
 
 import re
 
-
 file_name = "input.txt"
 with open(file_name, "r") as file:
     data = [line for line in file]
+
 
 def read(data: list) -> tuple:
     """Read the piles and steps from the contents of a file.
