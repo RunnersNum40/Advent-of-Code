@@ -1,4 +1,5 @@
 # day1.py
+
 from heapq import nlargest
 
 file_name = "input.txt"

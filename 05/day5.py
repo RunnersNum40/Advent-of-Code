@@ -38,12 +38,13 @@ def read(data: list) -> tuple:
     return piles, steps
 
 
-def apply_step_reverse(piles: tuple, step: tuple) -> list:
+def apply_step_reverse(piles: tuple[list], step: tuple) -> tuple[list]:
     """Apply a move command to a list of piles with reverse order for the new pile
-    
+
     Args:
         piles (tuple): Tuple of list of piles
         step (tuple): Tuple with (amount to move, pile to move from, pile to move to)
+
     Returns:
         The new configuration of piles
     """
@@ -54,12 +55,13 @@ def apply_step_reverse(piles: tuple, step: tuple) -> list:
     return piles
 
 
-def apply_step_forward(piles: tuple, step: tuple) -> list:
+def apply_step_forward(piles: tuple[list], step: tuple) -> tuple[list]:
     """Apply a move command to a list of piles with the same order for the new pile
-    
+
     Args:
         piles (tuple): Tuple of list of piles
         step (tuple): Tuple with (amount to move, pile to move from, pile to move to)
+
     Returns:
         The new configuration of piles
     """

@@ -10,29 +10,29 @@ data = np.array([list(map(int, line)) for line in data])
 print(data)
 
 
-def invisible(line: list, tree: int) -> bool:
+def invisible(line: np.ndarray, tree: int) -> bool:
     """Return if the tree is invisible from the edge.
-    
+
     Check if any of the trees are >= to the original tree.
-    
+
     Args:
-        line (list): height of trees
+        line (np.ndarray): height of trees
         tree (int): height of the tree to compare to
-    
+
     Returns:
         bool: False if the tree is visible from the edge else True.
     """
     return any(j >= tree for j in line)
 
 
-def visible(grid: list, pos: tuple) -> bool:
+def visible(grid: np.ndarray, pos: tuple) -> bool:
     """Return if the tree at a position in the grid is visible.
-    
-    Check if the tree is not the smallest in the up, 
+
+    Check if the tree is not the smallest in the up,
     down, right, and left directions.
-    
+
     Args:
-        grid (list): np Array of ints
+        grid (np.ndarray): np Array of ints
         pos (tuple): index of tree to check
 
     Returns:
@@ -51,15 +51,15 @@ def visible(grid: list, pos: tuple) -> bool:
     return False
 
 
-def view(line: list, tree: int) -> int:
+def view(line: np.ndarray, tree: int) -> int:
     """Return the number of trees less than a value starting from the beginning
-    
+
     Loop until a tree too tall is found or there are no trees.
-    
+
     Args:
-        line (list): height of trees getting farther from the start
+        line (np.ndarray): height of trees getting farther from the start
         tree (int): height of the tree to compare to
-    
+
     Returns:
         int: Number of visible trees
     """
@@ -69,15 +69,15 @@ def view(line: list, tree: int) -> int:
     return len(line)
 
 
-def scenic_score(grid: list, pos: tuple) -> int:
+def scenic_score(grid: np.ndarray, pos: tuple) -> int:
     """Return the scenic score of a tree in the grid.
-    
+
     Return the product of the number of visible trees in each direction.
-    
+
     Args:
-        grid (list): np Array of ints
+        grid (np.ndarray): np Array of ints
         pos (tuple): index of tree to check
-    
+
     Returns:
         int: The product of the number of visible trees
     """
@@ -89,7 +89,7 @@ def scenic_score(grid: list, pos: tuple) -> int:
         # Find the scenic value in the positive and negative directions
         dirs.append(view(line[:i][::-1], grid[pos]))
         dirs.append(view(line[i+1:], grid[pos]))
-    return np.prod(dirs)
+    return int(np.prod(dirs))
 
 
 print(sum(visible(data, ix) for ix in np.ndindex(*data.shape)))

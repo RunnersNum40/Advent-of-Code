@@ -25,11 +25,12 @@ def priority_sum(rucksacks: list) -> int:
         _priority_sum += letters[common_elements[0]]+1
     return _priority_sum
 
+
 def badge_priority_sum(rucksacks: list) -> int:
     """Return the sum of the priorities of common elements in groups of three.
-    
+
     Split the data into groups of three, find the common element, sum the priorities.
-    
+
     Args:
         rucksacks (list): list of string rucksacks
     Returns:
@@ -41,6 +42,7 @@ def badge_priority_sum(rucksacks: list) -> int:
         common_elements = [item for item in group[0] if item in group[1] and item in group[2]]
         _priority_sum += letters[common_elements[0]]+1
     return _priority_sum
+
 
 print(priority_sum(data))
 print(badge_priority_sum(data))

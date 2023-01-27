@@ -1,7 +1,5 @@
 # day9.py
 
-from typing import Tuple, NoReturn
-
 import numpy as np
 
 file_name = "input.txt"
@@ -15,15 +13,15 @@ class Knot:
     # Vectors matching letters
     direction_vectors = {"R": (0, 1), "L": (0, -1), "U": (1, 0), "D": (-1, 0)}
 
-    def __init__(self, child=None, pos: Tuple[int, int] = (0, 0)):
+    def __init__(self, child=None, pos: tuple[int, int] = (0, 0)):
         self.pos = np.array(pos)
         self.child = child
 
-    def move(self, direction: str) -> NoReturn:
+    def move(self, direction: str) -> None:
         """Move the knot in a direction and move it's children.
-        
+
         Move in the direction then propogate the move throught the rope.
-        
+
         Args:
             direction (str): R, L, U, or D directions
         """
@@ -35,9 +33,9 @@ class Knot:
         if self.child is not None:
             self.child.follow(self)
 
-    def follow(self, parent) -> NoReturn:
+    def follow(self, parent) -> None:
         """Follow a parent if it's moved
-        
+
         Args:
             parent (Knot): A parent knot
         """
@@ -49,15 +47,15 @@ class Knot:
             self.child.follow(self)
 
 
-def count_positions(motions: Tuple[Tuple[str, int], ...], n_knots: int) -> int:
+def count_positions(motions: list[tuple[str, int]], n_knots: int) -> int:
     """Return the number of positions visited by the tail in a series of motions.
-    
+
     Move the head and tail and record the unique location
-    
+
     Args:
-        motions (Tuple[Tuple[str, int], ...]): Series of directions and lengths
+        motions (list[tuple[str, int]]): Series of directions and lengths
         n_knots (int): Number of knots in the rope
-    
+
     Returns:
         int: Number of positions visted by the tail at least once
     """

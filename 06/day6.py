@@ -7,9 +7,9 @@ with open(file_name, "r") as file:
 
 def check_no_repeats(signal: str) -> bool:
     """Check if a string has no repeated characters.
-    
+
     Convert to a set and check that the length stays the same.
-    
+
     Args:
         signal (str): Run of characters
     Returns:
@@ -20,16 +20,22 @@ def check_no_repeats(signal: str) -> bool:
 
 def no_repeat_run(signal: str, match_length: int) -> int:
     """Return the number of characters in the signal till there are no repeats in a run.
-    
+
     Args:
         signal (str): Sring of the signal
         match_length (int): Length of the run to check
+
     Returns:
         int: Number of characters till no repeats in a run
+
+    Raises:
+        ValueError: If no repeats are found
     """
     for n in range(len(signal)-match_length):
         if check_no_repeats(signal[n:n+match_length]):
             return n+match_length
+
+    raise ValueError("No repeats found")
 
 
 print(no_repeat_run(data[0], 4))

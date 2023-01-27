@@ -9,9 +9,9 @@ pairs = [[list(map(int, elf.split("-"))) for elf in pair.split(",")] for pair in
 
 def self_containing(pair: list) -> bool:
     """Return if one assignment in a pair fully contains the other.
-    
+
     Check if the first contains the second, then check the sencond on the first.
-    
+
     Args:
         pair (list): List of assignments
     Returns:
@@ -30,10 +30,10 @@ def self_containing(pair: list) -> bool:
 
 def self_overlapping(pair: list) -> bool:
     """Return if the assignments overlap each other.
-    
+
     Check if one pair contains the other then, 
     check if either of the ends of assignment one are within assignment two.
-    
+
     Args:
         pair (list): List of assignments
     Returns:

@@ -13,9 +13,9 @@ class Folder:
     pattern = r"(\d+) ([a-z]+.*[a-z]*)"
 
     def __init__(self, 
-                 parent: object = None, 
-                 name: str = "/", 
-                 subfolders: dict = None, 
+                 parent: object = None,
+                 name: str = "/",
+                 subfolders: dict = None,
                  files: dict = None):
 
         self.parent = parent
@@ -25,17 +25,17 @@ class Folder:
         self.files = files if files is not None else {}
 
     def execute_line(self, line):
-        """Emulate the result of line occuring in the terminal 
+        """Emulate the result of line occuring in the terminal
         while the folder is open.
-        
+
         Check which type of line occured and run the matching function.
-        
+
         Args:
             line (str): String on the line
-        
+
         Returns:
             Folder: Returns the folder open after line execution
-        
+
         Raises:
             ValueError: If a line is not a recognized command
         """
@@ -52,12 +52,12 @@ class Folder:
     def cd(self, line: str):
         """Emulate the result of cd occuring in the terminal 
         while the folder is open.
-        
+
         Create a new subfolder if it does not exist then return the folder
-        
+
         Args:
             line (str): The cd command
-        
+
         Returns:
             Folder Returns the folder open after line execution
         """
@@ -77,22 +77,22 @@ class Folder:
     def ls(self, line: str):
         """Emulate the result of ls occuring in the terminal 
         while the folder is open.
-        
+
         Args:
             line (str): The ls command
-        
+
         Returns:
             Folder Returns the folder open after line execution
         """
         return self
 
     def output(self, line: str):
-        """Emulate the result of an output occuring in the terminal 
+        """Emulate the result of an output occuring in the terminal
         while the folder is open.
-        
+
         Args:
             line (str): The terminal output
-        
+
         Returns:
             Folder: Folder Returns the folder open after line execution
         """
@@ -109,9 +109,9 @@ class Folder:
 
     def asdict(self) -> dict:
         """Return the dictionary representation of a folder.
-        
+
         Create a nested dictionary of the dictionaies of subfolders.
-        
+
         Returns:
             dict: A nested dictionary of folders and files
         """
@@ -122,7 +122,7 @@ class Folder:
 
     def size(self) -> int:
         """Return the size of the folder including subfolders.
-        
+
         Returns:
             int: size of the folder
         """
@@ -140,21 +140,21 @@ class FileSystem:
     def __init__(self):
         self.home = Folder()
         self.current_dir = self.home
-        
+
     def align_with_stream(self, stream):
         for line in stream:
             self.current_dir = self.current_dir.execute_line(line)
 
 
-def flatten(home, f: Callable = lambda x: x._size) -> list:
+def flatten(home, f: Callable[[object], int] = lambda x: x._size) -> list:
     """Flatten a tree into a list.
-    
+
     Create a list and extend it with flattened children.
-    
+
     Args:
         home (Folder): The home folder
         f (Callable): Function to create represention of nodes
-    
+
     Returns:
         list: List of flattened tree
     """

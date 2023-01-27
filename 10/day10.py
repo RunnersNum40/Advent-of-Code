@@ -1,14 +1,12 @@
 # day10.py
 
-from typing import NoReturn
-
 file_name = "input.txt"
 with open(file_name, "r") as file:
     data = [line.strip() for line in file]
 
 
 class Register:
-    def __init__(self) -> NoReturn:
+    def __init__(self) -> None:
         self.cycles = [1]
 
     def signal_strength(self, cycle: int) -> int:
@@ -16,14 +14,14 @@ class Register:
 
         Args:
             cycle (int): Cycle to measure the strength at
-        
+
         Returns:
             int: Signal strength
         """
         # Subtract 1 in the index because the numbers are 1-indexed
         return self.cycles[cycle-1]*cycle
 
-    def loop(self, stream: list[str]) -> NoReturn:
+    def loop(self, stream: list[str]) -> None:
         """Cycle the register over a series of commands.
 
         Args:
@@ -32,9 +30,9 @@ class Register:
         for n, line in enumerate(stream):
             self.command(line)
 
-    def command(self, line: str) -> NoReturn:
+    def command(self, line: str) -> None:
         """Run the register on a command.
-        
+
         Args:
             line (str): String command
         """
@@ -43,11 +41,11 @@ class Register:
         elif line[:4] == "addx":
             self.addx(line)
 
-    def noop(self, line: str) -> NoReturn:
+    def noop(self, line: str) -> None:
         """Move forward one cycle without changing the register"""
         self.cycles.append(self.cycles[-1])
 
-    def addx(self, line: str) -> NoReturn:
+    def addx(self, line: str) -> None:
         """Add the value x after two cycles"""
         x = int(line[5:])
         self.cycles.append(self.cycles[-1])
@@ -55,13 +53,13 @@ class Register:
 
     def render(self, screen_length: int = 40) -> str:
         """Render the screen given a screen length.
-        
+
         Render each row by checking if the difference in the pixel 
         position and register differ by more than one.
-        
+
         Args:
             screen_length (int): Length of each row in the screen
-        
+
         Returns:
             str: String of the screen with new-lines
         """
