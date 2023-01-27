@@ -39,7 +39,7 @@ class Monkey:
                  false_monkey: int) -> None:
         # Initialise the attributes
         self.number = number
-        self.items = np.array(starting_items)
+        self.items = np.array(starting_items, dtype=np.int64)
         self.operation = operation
         self.test_value = test_value
         self.true_monkey = true_monkey
@@ -47,16 +47,19 @@ class Monkey:
         # Initialise the number of inspections
         self.inspections = 0
 
-    def turn(self, monkeys, divide: bool = False) -> None:
+    def turn(self, monkeys, lcm: int, divide: bool = False) -> None:
         """Inspect and then throw each item.
 
         Args:
             monkeys (dict[int, Monkey]):
                 The monkeys in the round.
+            lcm (int):
+                The least common multiple of the inspection numbers of the monkeys.
             divide (bool):
                 Whether to divide the items by 3 after inspecting.
         """
         self.inspect(divide)
+        self.items %= lcm
         self.throw(monkeys)
 
     def inspect(self, divide: bool) -> None:
@@ -105,7 +108,7 @@ class Monkey:
         monkeys[self.true_monkey].items = np.append(monkeys[self.true_monkey].items, true_throws)
         monkeys[self.false_monkey].items = np.append(monkeys[self.false_monkey].items, false_throws)
         # Reset the items after throwing them all
-        self.items = np.array([])
+        self.items = np.array([], dtype=np.int64)
 
     @classmethod
     def from_string(cls, data: list[str]) -> object:
@@ -166,15 +169,12 @@ class Monkey:
 class Game:
     def __init__(self, monkeys: list[Monkey]) -> None:
         self.monkeys = monkeys
-        self.mod_value = np.lcm.reduce([monkey.test_value for monkey in self.monkeys])
+        self.lcm = np.lcm.reduce([monkey.test_value for monkey in self.monkeys])
 
     def play(self, turns: int, divide: bool = False) -> None:
         for i in range(turns):
             for monkey in self.monkeys:
-                monkey.turn(self.monkeys, divide)
-            # Each round module the worry levels by the mod_value
-            for monkey in self.monkeys:
-                monkey.items %= self.mod_value
+                monkey.turn(self.monkeys, self.lcm, divide)
 
     @property
     def monkey_business(self) -> np.int64:
@@ -207,7 +207,7 @@ prob1 = Game.from_string(data)
 prob2 = Game.from_string(data)
 # Play the game
 prob1.play(20, True)
-prob2.play(10000, True)
+prob2.play(10000, False)
 # Get the product of the number of inspections of the two most active monkeys
 print(f"Problem 1 monkey business: {prob1.monkey_business}")
 print(f"Problem 2 monkey business: {prob2.monkey_business}")
