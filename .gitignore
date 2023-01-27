@@ -130,3 +130,6 @@ dmypy.json
 
 # input files
 input.txt
+
+# VSCode
+.vscode/settings.json
