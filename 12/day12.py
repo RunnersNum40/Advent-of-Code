@@ -81,7 +81,7 @@ objective_node = graph.nodes[height_map.objective[0]][height_map.objective[1]]
 # Find the shortest path
 path = graph.search(start_node, objective_node, huristic)
 # Print the path
-print(len(path)-1)
+print(f"The shortest path from the S to E is {len(path)-1} long")
 
 # Find all the nodes at height 0
 start_nodes = [node for row in graph.nodes for node in row if node.height == 0]
@@ -95,4 +95,4 @@ for node in start_nodes:
     paths.append(path)
 
 # Print the shortest path
-print(len(min(paths, key=len))-1)
+print(f"The shortest path from any a to E is {len(min(paths, key=len))-1} long")
