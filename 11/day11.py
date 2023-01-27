@@ -164,7 +164,7 @@ class Monkey:
 
 
 class Game:
-    def __init__(self, monkeys: dict[int, Monkey]) -> None:
+    def __init__(self, monkeys: list[Monkey]) -> None:
         self.monkeys = monkeys
         self.mod_value = np.lcm.reduce([monkey.test_value for monkey in self.monkeys])
 
@@ -177,7 +177,7 @@ class Game:
                 monkey.items %= self.mod_value
 
     @property
-    def monkey_business(self) -> int:
+    def monkey_business(self) -> np.int64:
         """Return the product of the number of inspections of the two most active monkeys."""
         inspections = [monkey.inspections for monkey in self.monkeys]
         return np.prod(np.sort(inspections)[-2:], dtype=np.int64)
