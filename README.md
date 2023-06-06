@@ -4,4 +4,4 @@
 
 &mdash; <cite>https://adventofcode.com/2022/about</cite>
 
-I am working on completing each puzzle for fun and practice. My intention is to have each done in Python, C, and Haskell for variety. Due to school I expect to take about a month to complete this task.
+I am working on completing each puzzle for fun and practice. My intention is to have each done in Python, C, and Haskell for variety. I'm working on these during random free time so I expect to take a long time to finish.
