@@ -1,6 +1,3 @@
-# VScode
-*.code-workspace
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -130,12 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# input files
-input.txt
-
-# VSCode
-.vscode/settings.json
 
 # Prerequisites
 *.d
