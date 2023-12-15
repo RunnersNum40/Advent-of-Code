@@ -25,7 +25,7 @@ def process_input(data: List[str]):
     return processed_data
 
 
-def solve_part_one(processed_data):
+def solve_part_one(processed_data) -> int:
     """
     Solves Part One of the day's challenge.
     """
@@ -33,7 +33,7 @@ def solve_part_one(processed_data):
     return None
 
 
-def solve_part_two(processed_data):
+def solve_part_two(processed_data) -> int:
     """
     Solves Part Two of the day's challenge.
     """
