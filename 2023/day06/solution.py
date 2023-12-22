@@ -1,6 +1,6 @@
 from functools import reduce
 import os
-from typing import List, Callable, Tuple
+from typing import List, Tuple
 from math import sqrt, floor, ceil
 from operator import mul
 
@@ -28,7 +28,7 @@ def process_input(data: List[str]) -> Tuple[str, str]:
     """
     Processes the input data before passing it to the solution functions.
     """
-    processed_data = tuple(map(clean_line, data))[0:2]
+    processed_data = tuple(map(clean_line, data[0:2]))
     return processed_data
 
 
@@ -50,6 +50,7 @@ def solve_part_one(lines: Tuple[str, str]) -> int:
     """
     Solves Part One of the day's challenge.
     """
+    # Pair numbers in tuples
     races = list(zip(*map(get_ints_from_line, lines)))
 
     return reduce(
